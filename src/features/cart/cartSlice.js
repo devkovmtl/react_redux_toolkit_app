@@ -14,10 +14,16 @@ const cartSlice = createSlice({
   reducers: {
     clearCart: (state) => {
       state.cartItems = [];
+      // we can return a new state but be carrefull will become new state!!
+      // return {}; // state become empty object
+    },
+    removeItem: (state, action) => {
+      const itemId = action.payload;
+      state.cartItems = state.cartItems.filter((item) => item.id !== itemId);
     },
   },
 });
 
-export const { clearCart } = cartSlice.actions;
+export const { clearCart, removeItem } = cartSlice.actions;
 
 export default cartSlice.reducer;
